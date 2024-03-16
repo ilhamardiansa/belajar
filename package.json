@@ -1,0 +1,21 @@
+{
+	"name": "chirps",
+	"private": true,
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev --parallel",
+		"lint": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
+		"format": "prettier --write \"**/*.{ts,tsx,md}\""
+	},
+	"devDependencies": {
+		"@chirps/eslint-config": "workspace:*",
+		"@chirps/typescript-config": "workspace:*",
+		"prettier": "^3.2.5",
+		"turbo": "latest",
+		"eslint": "^8.57.0"
+	},
+	"engines": {
+		"node": ">=20.11.1"
+	},
+	"packageManager": "pnpm@8.15.4"
+}

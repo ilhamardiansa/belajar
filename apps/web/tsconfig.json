@@ -1,0 +1,15 @@
+{
+	"extends": "@chirps/typescript-config/nextjs.json",
+	"compilerOptions": {
+		"verbatimModuleSyntax": true,
+		"baseUrl": ".",
+		"incremental": true,
+		"tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+		"plugins": [{ "name": "next" }],
+		"paths": {
+			"~/*": ["./src/*"]
+		}
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+	"exclude": ["node_modules"]
+}

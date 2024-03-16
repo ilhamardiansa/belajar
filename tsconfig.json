@@ -1,0 +1,3 @@
+{
+	"extends": "@chirps/typescript-config/base.json"
+}

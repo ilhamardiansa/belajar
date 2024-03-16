@@ -1,0 +1,57 @@
+version: '3.1'
+services:
+  db:
+    image: mysql:latest
+    container_name: chirps_mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: chirps
+      MYSQL_USER: chirps
+      MYSQL_PASSWORD: chirps
+    ports:
+      - '3306:3306'
+    volumes:
+      - chirps_mysql_data:/var/lib/mysql
+    networks:
+      - chirps_network
+
+  web:
+    image: chirps_web
+    container_name: chirps_web
+    build:
+      context: .
+      args:
+        - PROJECT=web
+        - PORT=3000
+      dockerfile: ./apps/web/Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+      - api
+    networks:
+      - chirps_network
+
+  api:
+    image: chirps_api
+    container_name: chirps_api
+    build:
+      context: .
+      args:
+        - PROJECT=api
+        - PORT=8080
+      dockerfile: ./apps/api/Dockerfile
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    networks:
+      - chirps_network
+
+volumes:
+  chirps_mysql_data:
+
+
+networks:
+  chirps_network:
+    driver: bridge
